@@ -5,11 +5,11 @@ import star from "../../assets/svg/star.svg";
 import { CiHeart } from "react-icons/ci";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 
-function Card() {
+function Card({data}) {
   return (
     <div className='card'>
       <div className='card-image'>
-        <img src={game} alt="" />
+        <img src={data.thumbnail} alt="" />
         <div className='discount'>-40%</div>
         <div className='icons'>
           <CiHeart className='heart' />

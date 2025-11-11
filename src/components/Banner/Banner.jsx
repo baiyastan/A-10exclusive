@@ -10,7 +10,7 @@ function Banner() {
     async function getCategory () {
         try {
             const res = await apiClient.get("/products/categories")
-            console.log(res);
+          
             setList(res.data)
             
         } catch (error) {
