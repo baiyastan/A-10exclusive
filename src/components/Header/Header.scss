@@ -73,6 +73,22 @@
         font-size: 25px;
         margin-top: 7px;
     }
+    .wish-count {
+        position: relative;
+        
+        .count {
+            width: 16px;
+            height: 16px;
+            background-color: red;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 12px;
+            position: absolute;
+            top: 3px;
+            right: -3px;
+        }
+    }
 }
 
 .line {

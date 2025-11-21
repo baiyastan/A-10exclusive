@@ -5,29 +5,53 @@ import { CiSearch } from "react-icons/ci";
 import { CiHeart } from "react-icons/ci";
 import { CiShoppingCart } from "react-icons/ci";
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 function Header() {
-  const {timer} = useSelector((state) => state.counter)
+  const { timer } = useSelector((state) => state.counter)
+  const {list} = useSelector((state) => state.wishlist)
+
+  const { t, i18n } = useTranslation()
+
+  function change(event) {
+    let lng = event.target.value;
+
+    i18n.changeLanguage(lng)
+
+  }
+
   return (
     <>
       <div className='black-header'>
         <p>Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!</p>
         <Link>ShopNow</Link>
 
+        <select onChange={change}>
+          <option value="kg">KGZ</option>
+          <option value="en">ENG</option>
+          <option value="ru">RUS</option>
+        </select>
       </div>
       <div className='header'>
         <h1 className='logo'>Exclusive {timer}</h1>
         <div className='menu'>
-          <li><Link to={""}>Home</Link></li>
-          <li><Link to={"contact"}>Contact</Link></li>
-          <li><Link to={"about"}>About</Link></li>
-          <li><Link>Sign Up</Link></li>
+          <li><Link to={"/"}>{t("home")}</Link></li>
+          <li><Link to={"/contact"}>Contact</Link></li>
+          <li><Link to={"/about"}>About</Link></li>
+          <li><Link to="/register">Sign Up</Link></li>
         </div>
         <div className='header-right'>
           <input type="text" placeholder='What are you looking for?' />
           <CiSearch className='lupa' />
-          <CiHeart className='heart' />
-          <CiShoppingCart className='cart' />
+          <div className='wish-count'>
+            <Link to="/wishlist">
+              <CiHeart className='heart' />
+              <div className='count'>{list.length}</div>
+            </Link>
+          </div>
+          <Link to="/basket">
+            <CiShoppingCart className='cart' />
+          </Link>
         </div>
       </div>
       <div className='line'></div>

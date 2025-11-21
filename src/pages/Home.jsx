@@ -5,15 +5,14 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getProduct } from '../redux/thunk/thunk'
 
 function Home() {
-  const {array, loading, error} = useSelector((state) => state.product)
+  const {array, loading, error, category} = useSelector((state) => state.product)
   const dispatch = useDispatch()
 
+   useEffect(() => {
+    dispatch(getProduct(category))
+  },[category])
 
-  useEffect(() => {
-    dispatch(getProduct())
-  },[])
 
-  console.log(array);
   
   return (
     <div>

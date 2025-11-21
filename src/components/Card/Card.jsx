@@ -4,24 +4,47 @@ import game from "../../assets/image/game.png"
 import star from "../../assets/svg/star.svg";
 import { CiHeart } from "react-icons/ci";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { useDispatch, useSelector } from 'react-redux';
+import { addWish, deleteWish } from '../../redux/slice/wishSlice';
+import { FaHeart } from "react-icons/fa6";
+import { addCart } from '../../redux/slice/cartSlice';
 
 function Card({data}) {
+  const {list } = useSelector((state) => state.wishlist)
+
+  function findNewPrice(price, discount) {
+    return price - (price * discount / 100)
+  }
+
+  const dispatch = useDispatch()
+
+  const isLiked = list.some((x) => x.id == data.id)
+
+  
+
   return (
     <div className='card'>
       <div className='card-image'>
         <img src={data.thumbnail} alt="" />
-        <div className='discount'>-40%</div>
+        <div className='discount'>-{data.discountPercentage}%</div>
         <div className='icons'>
-          <CiHeart className='heart' />
+          {
+            isLiked ?    
+            <FaHeart onClick={() => dispatch(deleteWish(data.id))}  className='heart-red' /> :    
+            <CiHeart onClick={() => dispatch(addWish(data))} className='heart' />
+          }
+        
           <MdOutlineRemoveRedEye className='eye' />
         </div>
-        <button className='btn'>Add To Cart</button>
+        <button 
+          onClick={() => dispatch(addCart(data))} 
+          className='btn'>Add To Cart</button>
       </div>
       <div className='card-content'>
-        <h3>Title</h3>
+        <h3>{data.title}</h3>
         <div className='prices'>
-            <p className='new-price'>$120</p>
-            <p className='old-price'>$160</p>
+            <p className='new-price'>${findNewPrice(data.price, data.discountPercentage).toFixed()}</p>
+            <p className='old-price'>${data.price}</p>
         </div>
         <div className='rating'>
             {

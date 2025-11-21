@@ -1,8 +1,8 @@
-.card {
+.wishcard {
     width: 270px;
     height: 350px;
 
-    .card-image {
+    .wish-image {
         width: 100%;
         height: 250px;
         display: flex;
@@ -38,22 +38,7 @@
             position: absolute;
             top: 12px;
             right: 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-
-            .heart{
-                font-size: 30px;
-                cursor: pointer;
-            }
-            .heart-red {
-                font-size: 30px;
-                cursor: pointer;
-                color: red;
-            }
-            .eye {
-                font-size: 30px;
-            }
+            
         }
 
         .btn {
@@ -71,17 +56,14 @@
             line-height: 24px;
             letter-spacing: 0%;
             text-align: center;
-            display: none;
-            transition: 0.5s ease;
+            
         }
 
-        &:hover .btn {
-            display: block;
-        }
+       
 
     }
 
-    .card-content {
+    .wish-content {
         h3 {
             color: rgba(0, 0, 0, 1);
             font-family: Poppins;

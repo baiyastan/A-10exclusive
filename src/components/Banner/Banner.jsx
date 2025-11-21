@@ -3,9 +3,12 @@ import "./Banner.scss"
 import Carousel from 'react-bootstrap/Carousel';
 import phone from "../../assets/image/phone.png"
 import { apiClient } from '../../axios/apiClient';
+import { useDispatch } from 'react-redux';
+import { setCategory } from '../../redux/slice/productSlice';
 
 function Banner() {
     const [list, setList] = useState([])
+    const dispatch = useDispatch()
 
     async function getCategory () {
         try {
@@ -29,7 +32,7 @@ function Banner() {
                 <ul>
                     {
                         list.map((item) => (
-                            <li key={item.slug}>{item.name}</li>
+                            <li onClick={() => dispatch(setCategory(item.name))} key={item.slug}>{item.name}</li>
                         ))
                     }
                 </ul>

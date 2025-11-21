@@ -3,23 +3,44 @@ import Layout from "./components/Layout/Layout";
 import About from "./pages/About";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
+import Wishlist from "./pages/Wishlist";
+import Basket from "./pages/Basket";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+
 
 const myRouter = createBrowserRouter([
     {
         path: "/",
-        element: <Layout/>,
+        element: <Layout />,
         children: [
             {
                 path: "",
-                element: <Home/>
+                element: <Home />
             },
             {
                 path: "about",
-                element: <About/>
+                element: <About />
             },
             {
                 path: "contact",
-                element: <Contact/>
+                element: <Contact />
+            },
+            {
+                path: "wishlist",
+                element: <Wishlist />
+            },
+            {
+                path: "basket",
+                element: <Basket />
+            },
+            {
+                path: "register",
+                element: <Register />
+            },
+            {
+                path: "login",
+                element: <Login />
             }
         ]
     }
